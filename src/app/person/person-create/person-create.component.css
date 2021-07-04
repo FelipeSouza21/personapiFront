@@ -1,0 +1,13 @@
+.form { 
+    display: flex;
+    flex-direction: column;
+}
+
+.form .container .phones {
+    padding-right: 15px;
+}
+
+button { 
+    margin-right: 15px;
+    margin-top: 15px;
+}

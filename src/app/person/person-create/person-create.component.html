@@ -1,0 +1,77 @@
+<mat-card class="card">
+  <mat-card-title>New Person</mat-card-title>
+  <form
+    class="form"
+    [formGroup]="register"
+    (ngSubmit)="submit()"
+    (ngReset)="cancel()"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Name*</mat-label>
+      <input
+        matInput
+        placeholder="Name"
+        name="firstName"
+        formControlName="firstName"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name*</mat-label>
+      <input
+        matInput
+        placeholder="Last Name"
+        name="lastName"
+        formControlName="lastName"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>CPF*</mat-label>
+      <input matInput placeholder="CPF" name="cpf" formControlName="cpf" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Birth Date</mat-label>
+      <input
+        matInput
+        placeholder="Birth date"
+        readonly
+        [matDatepicker]="picker"
+        name="birthDate"
+        formControlName="birthDate"
+        (click)="picker.open()"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="container">
+      <mat-form-field
+        hintLabel="Max 16 characters"
+        appearance="outline"
+        class="phones"
+      >
+        <mat-label>Phone 1*</mat-label>
+        <input
+          matInput
+          #input
+          maxlength="16"
+          placeholder="(XX) XXXXX-XXXX"
+          name="phoneNumber"
+          formControlName="phoneNumber"
+        />
+        <mat-icon matSuffix>settings_phone</mat-icon>
+        <mat-hint align="end">{{ input.value?.length || 0 }}/16</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select placeholder="type" formControlName="phoneType">
+          <mat-option value="HOME">Home</mat-option>
+          <mat-option value="MOBILE">Mobile</mat-option>
+          <mat-option value="COMMERCIAL">Commercial</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-card-actions>
+      <button type="submit" color="accent" mat-raised-button>Save</button>
+      <button type="reset" color="warn" mat-raised-button>Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
