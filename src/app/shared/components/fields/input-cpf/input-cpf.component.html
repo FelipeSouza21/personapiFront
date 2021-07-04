@@ -1,0 +1,15 @@
+<div [formGroup]="formGroup">
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        maxlength="14"
+        [placeholder]="title"
+        [name]="controlName"
+        [formControlName]="controlName"
+      />
+      <mat-error *ngIf="validate.hasErrorValidate(formControl, 'required')"
+        >Required field</mat-error>
+      <mat-error *ngIf="validate.hasErrorValidate(formControl, 'minLength')"
+        >Min length 14 characters</mat-error>
+    </mat-form-field>
+</div>

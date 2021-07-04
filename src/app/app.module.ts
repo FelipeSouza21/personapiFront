@@ -20,7 +20,7 @@ import { MaterialModule } from './shared/material/material.module';
     HeaderComponent,
     FooterComponent,
     NavComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+{
+    "[typescript]": {
+
+        "editor.autoClosingBrackets": "always"
+    },
+    "[typescriptreact]": {
+
+        "editor.autoClosingBrackets": "always"
+    },
+    "[python]": {
+    
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.autoClosingBrackets": "never",
+        "editor.wordBasedSuggestions": false
+    }
+}

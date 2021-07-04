@@ -10,3 +10,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .red {
     color: red;
 }
+
+.full-width {
+    width: 100%;
+}
+
+.form .container .phones {
+    padding-right: 15px;
+}

@@ -1,0 +1,10 @@
+<div [formGroup]="formGroup">
+  <mat-form-field appearance="outline">
+    <mat-label>Type</mat-label>
+    <mat-select [placeholder]="title" [formControlName]="controlName">
+      <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="validate.hasErrorValidate(formControl, 'required')"
+      >Required field</mat-error>
+  </mat-form-field>
+</div>

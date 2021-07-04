@@ -2,8 +2,8 @@ import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { PersonService } from "src/app/core/person.service";
 import { Person } from "../../shared/models/person.model";
-import { Phones } from "../../shared/models/phones.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ValidateFieldsService } from "src/app/shared/components/fields/validate-fields.service";
 
 @Component({
   selector: "app-person-create",
@@ -11,7 +11,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./person-create.component.css"],
 })
 export class PersonCreateComponent implements OnInit {
-  types = ["HOME", "MOBILE", "COMMERCIAL"];
+
+  types: Array<string>;
 
   register: FormGroup;
 
@@ -26,10 +27,19 @@ export class PersonCreateComponent implements OnInit {
   constructor(
     private personService: PersonService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    public validate: ValidateFieldsService
   ) {}
 
+  get f() {
+    return this.register.controls;
+  }
+
   ngOnInit(): void {
+
+
+    this.types = ["HOME", "MOBILE", "COMMERCIAL"];
+
     this.register = this.fb.group({
       firstName: [
         "",
@@ -51,8 +61,8 @@ export class PersonCreateComponent implements OnInit {
         "",
         [
           Validators.required,
-          Validators.minLength(15),
-          Validators.maxLength(15),
+          Validators.minLength(14),
+          Validators.maxLength(14),
         ],
       ],
       birthDate: [""],
@@ -61,7 +71,7 @@ export class PersonCreateComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(13),
-          Validators.maxLength(16),
+          Validators.maxLength(14),
         ],
       ],
       phoneType: ["", [Validators.required]],
@@ -80,5 +90,7 @@ export class PersonCreateComponent implements OnInit {
     this.router.navigate(["/persons"]);
   }
 
-  submit(): void {}
+  submit(): void {
+    this.register.markAllAsTouched();
+  }
 }
