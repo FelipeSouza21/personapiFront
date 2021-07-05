@@ -13,6 +13,7 @@ import { NavComponent } from './shared/components/nav/nav.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './shared/material/material.module';
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MaterialModule } from './shared/material/material.module';
     HeaderComponent,
     FooterComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { MaterialModule } from './shared/material/material.module';
     MaterialModule,
     PersonModule
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
+  entryComponents: [AlertComponent],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

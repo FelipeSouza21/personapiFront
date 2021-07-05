@@ -1,6 +1,6 @@
 <div [formGroup]="formGroup">
   <mat-form-field appearance="outline">
-    <mat-label>Type</mat-label>
+    <mat-label>Phone type*</mat-label>
     <mat-select [placeholder]="title" [formControlName]="controlName">
       <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
     </mat-select>

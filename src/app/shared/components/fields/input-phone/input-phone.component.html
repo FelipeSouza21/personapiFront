@@ -1,13 +1,13 @@
 <div [formGroup]="formGroup">
   <mat-form-field
-    hintLabel="Max 14 characters"
+    hintLabel="Min 13 and Max 14 characters"
     appearance="outline"
-    class="phones"
-  >
-    <mat-label>Phone *</mat-label>
+    class="phones">
+    <mat-label>Phone*</mat-label>
     <input
       matInput
       #input
+      minLength="13"
       maxlength="14"
       [placeholder]="title"
       [name]="phoneNumber"
@@ -16,10 +16,8 @@
     <mat-icon matSuffix>settings_phone</mat-icon>
     <mat-hint align="end">{{ input.value?.length || 0 }}/14</mat-hint>
     <mat-error *ngIf="validate.hasErrorValidate(formControl, 'required')"
-      >Required field</mat-error
-    >
+      >Required field</mat-error>
     <mat-error *ngIf="validate.hasErrorValidate(formControl, 'minLength')"
-      >Min length 13 characters</mat-error
-    >
+      >Min length 13 characters</mat-error>
   </mat-form-field>
 </div>

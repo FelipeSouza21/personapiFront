@@ -1,20 +1,20 @@
 <mat-card class="card">
   <mat-card-title>New Person</mat-card-title>
-  <form autocomplete="off" class="form" [formGroup]="register"
+  <form  class="form" [formGroup]="register"
     (ngSubmit)="submit()"
     (ngReset)="cancel()">
-    <app-input-text title="First Name*" [formGroup]="register" controlName="firstName">
+    <app-input-text title="First Name*"  controlName="firstName" label="First Name*" [formGroup]="register">
     </app-input-text>
-    <app-input-text title="Last Name*" [formGroup]="register" controlName="lastName">
+    <app-input-text title="Last Name*"  controlName="lastName" label="Last Name*" [formGroup]="register">
     </app-input-text>
-    <app-input-cpf title="CPF*" [formGroup]="register" controlName="cpf">
+    <app-input-cpf title="xxx.xxx.xxx-xx"  controlName="cpf" [formGroup]="register">
     </app-input-cpf>
-    <app-input-date title="Birth Date*" [formGroup]="register" controlName="birthDate">
+    <app-input-date title="dd/mm/aaaa"  controlName="birthDate" [formGroup]="register">
     </app-input-date>
     <div class="container">
-      <app-input-phone title="Phone*" [formGroup]="register" controlName="phoneNumber">
+      <app-input-phone title="(xx)xxxxx-xxxx"  controlName="phoneNumber" [formGroup]="register">
       </app-input-phone>
-      <app-input-select title="Type*" [types]="types" [formGroup]="register" controlName="phoneType">
+      <app-input-select title="Type*"  controlName="phoneType" [types]="types" [formGroup]="register">
       </app-input-select>
     </div>
     <mat-card-actions>

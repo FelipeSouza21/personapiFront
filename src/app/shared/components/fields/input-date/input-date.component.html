@@ -3,14 +3,10 @@
       <mat-label>Birth Date</mat-label>
       <input
         matInput
+        maxlength="14"
         [placeholder]="title"
         [name]="controlName"
         [formControlName]="controlName"
-        readonly
-        [matDatepicker]="picker"
-        (click)="picker.open()"
       />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 </div>

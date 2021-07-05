@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule, 
         MatCardModule, 
         MatDatepickerModule, 
+        MatDialogModule, 
         MatFormFieldModule, 
         MatIconModule, 
         MatInputModule, 
@@ -30,7 +31,8 @@ import { MatButtonModule,
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   exports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { MatButtonModule,
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

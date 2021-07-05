@@ -20,7 +20,7 @@ export class PersonService {
     });
   }
 
-  create(person: Person): Observable<Person> {
+  save(person: Person): Observable<Person> {
     return this.http.post<Person>(this.baseUrl, person);
   }
 

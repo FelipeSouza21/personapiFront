@@ -12,6 +12,7 @@ export class InputTextComponent {
   @Input() title: string;
   @Input() formGroup: FormGroup;
   @Input() controlName: string;
+  @Input() label: string;
 
   constructor(public validate: ValidateFieldsService) { }
 

@@ -15,6 +15,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100%;
 }
 
-.form .container .phones {
+.phones {
     padding-right: 15px;
 }
