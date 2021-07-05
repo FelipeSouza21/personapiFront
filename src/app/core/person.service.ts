@@ -8,7 +8,7 @@ import { Person } from "../shared/models/person.model";
   providedIn: "root",
 })
 export class PersonService {
-  baseUrl = "http://localhost:8080/api/v1/people";
+  baseUrl = "http://localhost:8080/api/v1/people/";
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
 
@@ -29,17 +29,14 @@ export class PersonService {
   }
 
   readById(id: string): Observable<Person> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.get<Person>(url);
+    return this.http.get<Person>(this.baseUrl + id);
   }
 
   update(person: Person): Observable<Person> {
-    const url = `${this.baseUrl}/${person.id}`;
-    return this.http.put<Person>(url, person);
+    return this.http.put<Person>(this.baseUrl, person);
   }
 
   delete(id: string): Observable<Person> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<Person>(url);
+    return this.http.delete<Person>(this.baseUrl);
   }
 }

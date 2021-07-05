@@ -11,7 +11,11 @@ import { Person } from '../../shared/models/person.model';
 export class PersonReadComponent implements OnInit {
 
   persons: Person[]
-  displayedColumns = ["id", "firstName", "lastName", "cpf", "action"]
+  displayedColumns = ["id", 
+                      "firstName", 
+                      "lastName", 
+                      "cpf", 
+                      "action"]
 
   constructor(private personService: PersonService) { }
 
