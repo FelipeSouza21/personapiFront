@@ -58,7 +58,7 @@ export class PersonCreateComponent implements OnInit {
           Validators.maxLength(14),
         ],
       ],
-      birthDate: [""],
+      birthDate: [null],
       phoneNumber: [
         "",
         [
@@ -97,6 +97,21 @@ export class PersonCreateComponent implements OnInit {
     this.save(person);
   }
 
+  generatePerson(): void {
+    const person: Person = {
+      firstName: this.register.value.firstName,
+      lastName: this.register.value.lastName,
+      cpf: this.register.value.cpf,
+      birthDate: this.register.value.birthDate,
+      phones: [
+        {
+          number: this.register.value.phoneNumber,
+          type: this.register.value.phoneType,
+        },
+      ],
+    } as Person;    
+  }
+
   restartForm(): void {
     this.register.reset();
   }
@@ -109,8 +124,8 @@ export class PersonCreateComponent implements OnInit {
             btnSuccess: "Back to list view",
             btnCancel: "Add new person",
             colorBtnCancel: "primary",
-            hasBtnClose: true,
-          } as Alert,
+            hasBtnClose: true
+          } as Alert
         };
         const dialogRef = this.dialog.open(AlertComponent, config);
         dialogRef.afterClosed().subscribe((option: boolean) => {
@@ -128,7 +143,7 @@ export class PersonCreateComponent implements OnInit {
             description: "Something went wrong!",
             colorBtnSuccess: "warn",
             btnSuccess: "Close",
-          } as Alert,
+          } as Alert
         };
         this.dialog.open(AlertComponent, config);
       }
