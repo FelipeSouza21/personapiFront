@@ -30,7 +30,7 @@ export class PersonService {
     return this.http.get<Person[]>(this.baseUrl);
   }
 
-  readById(id: string): Observable<Person> {
+  readById(id: number): Observable<Person> {
     return this.http.get<Person>(this.baseUrl + id);
   }
 
@@ -38,7 +38,7 @@ export class PersonService {
     return this.http.put<Person>(this.baseUrl, person);
   }
 
-  delete(id: string): Observable<Person> {
-    return this.http.delete<Person>(this.baseUrl);
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(this.baseUrl + id);
   }
 }

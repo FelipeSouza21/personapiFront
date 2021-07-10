@@ -1,0 +1,14 @@
+<mat-list *ngIf="person">
+    <mat-list-item> Name: {{person.firstName}}</mat-list-item>
+    <mat-list-item> Last Name: {{person.lastName}}</mat-list-item>
+    <mat-list-item> CPF: {{person.cpf}}</mat-list-item>
+    <mat-list-item> Birth Date: {{person.birthDate}}</mat-list-item>
+    <mat-list-item> Phone Number: {{person.phones[0].number}}</mat-list-item>
+    <mat-list-item> Phone Type: {{person.phones[0].type}}</mat-list-item>
+</mat-list>
+<mat-card>
+    <mat-card-actions>
+        <button color="accent" mat-raised-button>Edit</button>
+        <button color="warn" mat-raised-button (click)="delete()">Delete</button>
+    </mat-card-actions>
+</mat-card>

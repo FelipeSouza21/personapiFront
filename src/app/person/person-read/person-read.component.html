@@ -22,8 +22,13 @@
       </ng-container>      
 
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <th mat-header-cell *matHeaderCellDef>Actions</th>       
         <td mat-cell *matCellDef="let row">
+            <a routerLink="/persons/view/{{ row.id }}" class="perm_identity">
+                <i class="material-icons">
+                    view
+                </i>
+            </a>
             <a routerLink="/persons/update/{{ row.id }}" class="edit">
                 <i class="material-icons">
                     edit
