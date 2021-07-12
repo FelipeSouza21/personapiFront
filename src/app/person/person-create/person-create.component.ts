@@ -1,4 +1,4 @@
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material";
@@ -14,8 +14,9 @@ import { Alert } from "src/app/shared/models/alert";
   styleUrls: ["./person-create.component.css"],
 })
 export class PersonCreateComponent implements OnInit {
-  types: Array<string>;
 
+  id: number;
+  types: Array<string>;
   register: FormGroup;
 
   constructor(
@@ -23,7 +24,8 @@ export class PersonCreateComponent implements OnInit {
     public dialog: MatDialog,
     private personService: PersonService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   get f() {
@@ -31,11 +33,34 @@ export class PersonCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.params['id'];
+    if (this.id) {
+      this.personService.readById(this.id)
+        .subscribe((person: Person) => this.createForm(person));
+    } else {
+      this.createForm(this.createBlankForm());
+    }
+
     this.types = ["HOME", "MOBILE", "COMMERCIAL"];
 
+  }
+
+  private createBlankForm(): Person {
+    return {
+      id: null,
+      firstName: null,
+      lastName: null,
+      cpf: null,
+      birthDate: null,
+      phones: [{number: null,
+               type: null}]
+    } as Person;
+  }
+
+  private createForm(person: Person): void {
     this.register = this.fb.group({
       firstName: [
-        "",
+        person.firstName,
         [
           Validators.required,
           Validators.minLength(2),
@@ -43,7 +68,7 @@ export class PersonCreateComponent implements OnInit {
         ],
       ],
       lastName: [
-        "",
+        person.lastName,
         [
           Validators.required,
           Validators.minLength(2),
@@ -51,23 +76,23 @@ export class PersonCreateComponent implements OnInit {
         ],
       ],
       cpf: [
-        "",
+        person.cpf,
         [
           Validators.required,
           Validators.minLength(14),
           Validators.maxLength(14),
         ],
       ],
-      birthDate: [null],
+      birthDate: [person.birthDate],
       phoneNumber: [
-        "",
+        person.phones[0].number,
         [
           Validators.required,
           Validators.minLength(13),
           Validators.maxLength(14),
         ],
       ],
-      phoneType: ["", [Validators.required]],
+      phoneType: [person.phones[0].type, [Validators.required]],
     });
   }
 
@@ -94,7 +119,12 @@ export class PersonCreateComponent implements OnInit {
       ],
     } as Person;
     console.log(person);
-    this.save(person);
+    if (this.id) {
+      person.id = this.id;
+      this.edit(person);
+    } else {
+      this.save(person);
+    }
   }
 
   generatePerson(): void {
@@ -130,7 +160,7 @@ export class PersonCreateComponent implements OnInit {
         const dialogRef = this.dialog.open(AlertComponent, config);
         dialogRef.afterClosed().subscribe((option: boolean) => {
           if (option) {
-            this.router.navigateByUrl("/persons");
+            this.router.navigateByUrl("persons");
           } else {
             this.restartForm();
           }
@@ -149,4 +179,32 @@ export class PersonCreateComponent implements OnInit {
       }
     );
   }
+
+  private edit(person: Person): void {
+    this.personService.update(person).subscribe(
+      () => {
+        const config = {
+          data: {
+            description: "Registration updated successfully!",
+            btnSuccess: "Back to list view"
+          } as Alert
+        };
+        const dialogRef = this.dialog.open(AlertComponent, config);
+        dialogRef.afterClosed().subscribe(() => this.router.navigateByUrl("persons"));
+      },
+      () => {
+        const config = {
+          data: {
+            title: "Error!",
+            description: "Something went wrong!",
+            colorBtnSuccess: "warn",
+            btnSuccess: "Close",
+          } as Alert
+        };
+        this.dialog.open(AlertComponent, config);
+      }
+    );
+  }
+
+
 }

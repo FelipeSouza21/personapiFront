@@ -8,7 +8,8 @@
 </mat-list>
 <mat-card>
     <mat-card-actions>
-        <button color="accent" mat-raised-button>Edit</button>
+        <button color="accent" mat-raised-button (click)="edit()">Edit</button>
         <button color="warn" mat-raised-button (click)="delete()">Delete</button>
+        <button color="primary" mat-raised-button (click)="back()">Back</button>
     </mat-card-actions>
 </mat-card>

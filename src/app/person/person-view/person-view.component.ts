@@ -50,4 +50,12 @@ export class PersonViewComponent implements OnInit {
       this.person = person)
   }
 
+  private edit(): void {
+    this.router.navigateByUrl("/persons/update/" + this.id);
+  }
+
+  private back(): void {
+    this.router.navigateByUrl("persons");  
+  }
+
 }

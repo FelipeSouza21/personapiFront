@@ -35,7 +35,7 @@ export class PersonService {
   }
 
   update(person: Person): Observable<Person> {
-    return this.http.put<Person>(this.baseUrl, person);
+    return this.http.put<Person>(this.baseUrl + person.id, person);
   }
 
   delete(id: number): Observable<void> {

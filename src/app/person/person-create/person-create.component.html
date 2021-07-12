@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" *ngIf="register">
   <mat-card-title>New Person</mat-card-title>
   <form  class="form" [formGroup]="register"
     (ngSubmit)="submit()"
