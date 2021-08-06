@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  personcrud:
+    image: personcrud
+    build: .
+    ports:
+      - 3000:3000
